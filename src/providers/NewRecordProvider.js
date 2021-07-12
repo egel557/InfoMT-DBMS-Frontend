@@ -9,6 +9,8 @@ export default function NewRecordProvider({ open, handleOpen, handleClose, child
     const [ Period_ID, setPeriod_ID ] = useState("")
     const [ Current, setCurrent ] = useState(0)
     const [ Rate, setRate ] = useState(0)
+    const [ Meter_No, setMeter_No ] = useState("")
+    const [ isInitialRecord, setIsInitialRecord ] = useState(false)
     const [ modalView, setModalView ] = useState("NEW_RECORD")
 
 
@@ -19,11 +21,18 @@ export default function NewRecordProvider({ open, handleOpen, handleClose, child
         setCurrent(0)
         setRate(0)
         setModalView("NEW_RECORD")
+        setMeter_No("")
+        setIsInitialRecord(false)
     }, [ open ])
 
     useEffect(_ => {
         setBill_ID("")
     }, [ type ])
+
+    useEffect(_ => {
+        setMeter_No("")
+        setIsInitialRecord(false)
+    }, [Bill_ID])
 
     return <NewRecordContext.Provider value={{
         open,
@@ -34,6 +43,8 @@ export default function NewRecordProvider({ open, handleOpen, handleClose, child
         Period_ID, setPeriod_ID,
         Current, setCurrent,
         Rate, setRate,
+        Meter_No, setMeter_No,
+        isInitialRecord, setIsInitialRecord
     }}>
         {children}
     </NewRecordContext.Provider>

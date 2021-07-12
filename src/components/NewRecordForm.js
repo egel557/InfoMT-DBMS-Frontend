@@ -18,6 +18,8 @@ export default function NewRecordForm(){
         Period_ID, setPeriod_ID,
         Current, setCurrent,
         Rate, setRate,
+        Meter_No, setMeter_No,
+        // isInitialRecord, setIsInitialRecord
     } = useContext(NewRecordContext)
 
     const [ error, setError ] = useState(false)
@@ -44,17 +46,24 @@ export default function NewRecordForm(){
     )
     const meterQuery = useQuery(
         [ "tenant_meter_details", { Bill_ID } ],
-        () => axios.get(`http://localhost:5000/tenant-meter-details?Bill_ID=${Bill_ID}`).then(res => res.data)
+        () => axios.get(`http://localhost:5000/tenant-meter-details?Bill_ID=${Bill_ID}`).then(res => res.data),
+        {
+            onSuccess: (data) => setMeter_No(data.Meter_No),
+        }
     )
 
+    
     const addRecord = useMutation((payload) => 
-        axios.post("http://localhost:5000/main_records/new", payload)
+    axios.post("http://localhost:5000/main_records/new", payload)
     )
-
-    const Meter_No = meterQuery.data?.Meter_No || ""
+    
+    // const Meter_No = meterQuery.data?.Meter_No || ""
     const Previous = meterQuery.data?.Previous || 0
     const Consumption =  Math.round((Current - Previous )* 100)/100
     const Total_Amount = Math.round(Rate * Consumption * 100)/100
+    const isInitialRecord = meterQuery.data?.isInitialRecord
+    
+    console.log(isInitialRecord)
 
     const handleSubmit = _ => {
         const payload = { Bill_ID, Meter_No, Period_ID: Number(Period_ID), Rate: Number(Rate), Total_Amount, Previous, Current: Number(Current), Consumption }
@@ -140,10 +149,11 @@ export default function NewRecordForm(){
 
         <Grid item xs={6}>
             <TextField 
-                disabled
+                disabled={!isInitialRecord}
                 fullWidth
                 label="Meter No"
                 value={Meter_No}
+                onChange={e => setMeter_No(e.target.value)}
             />
         </Grid>
         <Grid item xs={6}/>
