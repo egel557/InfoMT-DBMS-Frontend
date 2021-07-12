@@ -57,14 +57,11 @@ export default function NewRecordForm(){
     axios.post("http://localhost:5000/main_records/new", payload)
     )
     
-    // const Meter_No = meterQuery.data?.Meter_No || ""
     const Previous = meterQuery.data?.Previous || 0
     const Consumption =  Math.round((Current - Previous )* 100)/100
     const Total_Amount = Math.round(Rate * Consumption * 100)/100
     const isInitialRecord = meterQuery.data?.isInitialRecord
     
-    console.log(isInitialRecord)
-
     const handleSubmit = _ => {
         const payload = { Bill_ID, Meter_No, Period_ID: Number(Period_ID), Rate: Number(Rate), Total_Amount, Previous, Current: Number(Current), Consumption }
         addRecord.mutate(payload, 
@@ -149,7 +146,7 @@ export default function NewRecordForm(){
 
         <Grid item xs={6}>
             <TextField 
-                disabled={!isInitialRecord}
+                disabled={!Bill_ID || !isInitialRecord}
                 fullWidth
                 label="Meter No"
                 value={Meter_No}
