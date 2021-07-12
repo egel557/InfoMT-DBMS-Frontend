@@ -1,14 +1,17 @@
 import DataTable from "components/DataTable";
 import { Box, Paper } from "@material-ui/core";
-import Button from "components/Button"
 import useTenants from "hooks/useTenants";
+import { useState } from "react"
+import TenantModalButton from "components/TenantModalButton";
 
 export default function TenantsView(){
     const query = useTenants()
+    const [ selected, setSelected ] = useState(null)
+
     return <Box>
         <Box component={Paper} p={2} mb={2} variant="outlined">
-            <Button style={{ marginRight: 5 }} type="add" />
-            <Button type="edit" />
+            <TenantModalButton style={{ marginRight: 5 }} type="add" />
+            <TenantModalButton disabled={!selected} type="edit" tenant={selected} />
         </Box>
         <DataTable
             query={query}
@@ -26,6 +29,13 @@ export default function TenantsView(){
                 { field: "Creation_Date", width: 200 },
                 { field: "Status", width: 150, type: "boolean" },
             ]}
+            onSelectionModelChange={({ selectionModel }) => 
+                setSelected(
+                    selectionModel.length === 0 
+                    ? null 
+                    : query.data?.find?.(row => row.Tenant_ID === selectionModel[0])
+                )
+            }
         />
     </Box>
 }
