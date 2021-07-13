@@ -8,8 +8,8 @@ export default function TenantsView(){
     const query = useTenants()
     const [ selected, setSelected ] = useState(null)
 
-    return <Box>
-        <Box component={Paper} p={2} mb={2} variant="outlined">
+    return <Box mb={2}>
+        <Box component={Paper} p={2} mb={2}>
             <TenantModalButton style={{ marginRight: 5 }} type="add" />
             <TenantModalButton disabled={!selected} type="edit" tenant={selected} />
         </Box>

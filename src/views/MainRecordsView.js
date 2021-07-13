@@ -46,7 +46,7 @@ export default function MainRecordsView(){
         <Box mb={2}>
             <DocumentForm bill={selected} />
         </Box>
-        <Box display="flex">
+        <Box display="flex" mb={2}>
             <DataTable 
                 style={{ flexGrow: 1 }}
                 onSelectionModelChange={({ selectionModel }) => 
@@ -78,7 +78,7 @@ export default function MainRecordsView(){
                     { field: "Total_Amount", width: 150, type: "number"},
                 ]}
             />
-            <Box width={220} p={2} ml={1} variant="outlined" component={Paper}>
+            <Box width={220} p={2} ml={1} component={Paper}>
             {[
                 <NewRecordButton/>,
                 <Divider />,

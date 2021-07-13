@@ -9,7 +9,7 @@ export default function DocumentForm({ bill }){
     const periodEnd = moment(bill?.Period_End)
     const unit = bill?.type === "electric" ? "kw-h" : bill?.type === "water" ? <>m<sup>3</sup></> : "unit"
 
-    return <TableContainer component={Paper} variant="outlined">
+    return <TableContainer component={Paper} >
         <Table>
             <TableHead>
                 <TableRow>
