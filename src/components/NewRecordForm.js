@@ -1,7 +1,7 @@
 import Button from "./Button";
 import { useContext, useState,  } from "react";
 import { Add as AddIcon } from "@material-ui/icons"
-import { Grid, FormHelperText, IconButton } from "@material-ui/core";
+import { Grid, FormHelperText, IconButton, Typography, Divider } from "@material-ui/core";
 import Select from "./Select";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "axios";
@@ -80,6 +80,9 @@ export default function NewRecordForm(){
         {error && <Grid item xs={12}>
             <FormHelperText error>Something went wrong.</FormHelperText>
         </Grid>}
+        <Grid item xs={12}>
+            <Typography >Billing Information</Typography>
+        </Grid>
         <Grid item>
             <Select 
                 name="type"
@@ -143,7 +146,9 @@ export default function NewRecordForm(){
                 <AddIcon fontSize="small" />
             </IconButton>
         </Grid>
-
+        <Grid item xs={12}>
+            <Typography >Meter Information</Typography>
+        </Grid>
         <Grid item xs={6}>
             <TextField 
                 disabled={!Bill_ID || !isInitialRecord}
@@ -181,6 +186,9 @@ export default function NewRecordForm(){
                 value={Consumption}
             />
         </Grid>
+        <Grid item xs={12}>
+            <Typography >Charges</Typography>
+        </Grid>
         <Grid item xs={3}>
             <TextField 
                 disabled={!Bill_ID}
@@ -190,6 +198,9 @@ export default function NewRecordForm(){
                 value={Rate}
                 onChange={e => setRate(e.target.value)}
             />
+        </Grid>
+        <Grid item xs={12}>
+            <Divider />
         </Grid>
         <Grid item xs={4}>
             <TextField 

@@ -43,7 +43,7 @@ export default function MainRecordsView(){
     }, [ type, year, month ])
 
     return <Box>
-        <Box mb={1}>
+        <Box mb={2}>
             <DocumentForm bill={selected} />
         </Box>
         <Box display="flex">
@@ -78,7 +78,7 @@ export default function MainRecordsView(){
                     { field: "Total_Amount", width: 150, type: "number"},
                 ]}
             />
-            <Box width={200} p={2} ml={1} variant="outlined" component={Paper}>
+            <Box width={220} p={2} ml={1} variant="outlined" component={Paper}>
             {[
                 <NewRecordButton/>,
                 <Divider />,
@@ -111,18 +111,18 @@ export default function MainRecordsView(){
                     value={month} 
                     options={[
                         "All",
-                        { display: "January", value: 1 },
-                        { display: "February", value: 2 },
-                        { display: "March", value: 3 },
-                        { display: "April", value: 4 },
-                        { display: "May", value: 5 },
-                        { display: "June", value: 6 },
-                        { display: "July", value: 7 },
-                        { display: "August", value: 8 },
-                        { display: "September", value: 9 },
-                        { display: "October", value: 10 },
-                        { display: "November", value: 11 },
-                        { display: "December", value: 12 },
+                        { display: "January", value: "01" },
+                        { display: "February", value: "01" },
+                        { display: "March", value: "03" },
+                        { display: "April", value: "04" },
+                        { display: "May", value: "05" },
+                        { display: "June", value: "06" },
+                        { display: "July", value: "07" },
+                        { display: "August", value: "08" },
+                        { display: "September", value: "09" },
+                        { display: "October", value: "10" },
+                        { display: "November", value: "11" },
+                        { display: "December", value: "12" },
                     ]}
                     onChange={e => setMonth(e.target.value)}
                 />
