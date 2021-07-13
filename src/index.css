@@ -1,6 +1,17 @@
-*{
+/* *{
     -ms-overflow-style: none;
 }
 ::-webkit-scrollbar {
     display: none;
 }
+
+/* .scrollbar {
+    -ms-overflow-style: scrollbar
+}
+
+.scrollbar::-webkit-scrollbar {
+    display: block
+}
+/* .scrollbar {
+    color: red
+} */ 

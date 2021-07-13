@@ -22,6 +22,7 @@ export default function DataTable({ pageSize=10, pageDependencies=[], query={ is
 
     return <Paper style={{ display: "flex", alignItems: "stretch", width: "100%" }}>
         <DataGrid
+            className="scrollbar"
             // style={{ height: "100%" }}
             disableColumnSelector
             headerHeight={38}
